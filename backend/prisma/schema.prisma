@@ -1,0 +1,26 @@
+model User {
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String        @unique
+  password     String
+  role         String
+
+  patientId    Int?
+  patient     User?          @relation("CaretakerPatient", fields: [patientId], references: [id])
+  caretaker    User?        @relation("CaretakerPatient")
+
+  routineItems RoutineItem[]
+}
+
+model RoutineItem {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  title      String
+  time       String
+  type       String
+  date       DateTime
+  completed  Boolean  @default(false)
+  isPinned   Boolean  @default(false)
+
+  user       User     @relation(fields: [userId], references: [id])
+}

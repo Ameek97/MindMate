@@ -10,10 +10,11 @@ app.use(express.urlencoded({ extended: true, limit: '100kb' }));
 
 
 
-app.use('/api', routineRoutes);
-app.use('/api', authRoutes);
+app.use('/api/auth/', authRoutes);
+app.use('/api/', routineRoutes);
 app.use(express.static(path.join(__dirname, 'frontend')));
 
+
 app.listen(8000, ()=>{
-    console.log('server live on port 3000');
+    console.log('server live on port 8000');
 })

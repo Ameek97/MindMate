@@ -66,11 +66,11 @@ function getTodayRoutine(req, res) {
   ]);
 }
 
-function createRoutine(req, res) {
-  res.json({
-    message: 'POST /api/routine'
-  });
-}
+// function createRoutine(req, res) {
+//   res.json({
+//     message: 'POST /api/routine'
+//   });
+// }
 
 async function createTodayRoutine(req, res) {
 
@@ -89,13 +89,7 @@ async function createTodayRoutine(req, res) {
       });
     }
 
-    for (const item of items) {
-      if (!item || !item.title || !item.time || !item.type) {
-        return res.status(400).json({
-          error: 'Each item requires title, time, and type.'
-        });
-      }
-    }
+
 
     const caretaker = await prisma.user.findUnique({
       where: { id: req.user.id }
@@ -136,12 +130,7 @@ async function createTodayRoutine(req, res) {
 
 
 
-function completeRoutine(req, res) {
-  res.json({
-    message: 'PATCH /api/routine/:id/complete',
-    id: req.params.id
-  });
-}
+
 
 function deleteRoutine(req, res) {
   res.json({
@@ -153,8 +142,6 @@ function deleteRoutine(req, res) {
 module.exports = {
   getRoutine,
   getTodayRoutine,
-  createRoutine,
   createTodayRoutine,
-  completeRoutine,
   deleteRoutine
 };

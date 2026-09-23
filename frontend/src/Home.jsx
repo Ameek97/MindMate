@@ -19,7 +19,7 @@ function Home() {
     };
 
     fetchRoutine();
-  }, []);
+  }, []  );
 
   return (
     <main className="home">
